@@ -1,0 +1,99 @@
+<div class="container">
+  <!-- Filter Section -->
+  <mat-card class="section-card">
+    <h2>🐻 Filter Bears by Color</h2>
+    <mat-form-field appearance="outline" class="full">
+      <mat-label>Color</mat-label>
+      <mat-select [(value)]="filterColor" (selectionChange)="onFilterByColor()">
+        <mat-option value="">-- All --</mat-option>
+        <mat-option *ngFor="let c of colors" [value]="c.name">{{
+          c.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-card>
+
+  <!-- Add Bear Form -->
+  <mat-card class="section-card">
+    <h2>➕ Add a Bear</h2>
+    <form [formGroup]="addForm" (ngSubmit)="onSubmit()" class="form-grid">
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" placeholder="e.g. Grizzly" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Size</mat-label>
+        <input matInput type="number" formControlName="size" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Colors</mat-label>
+        <mat-select formControlName="colors" multiple>
+          <mat-option *ngFor="let c of colors" [value]="c.id">{{
+            c.name
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="addForm.invalid"
+      >
+        Add Bear
+      </button>
+    </form>
+  </mat-card>
+
+  <!-- Bear List -->
+  <mat-card class="section-card">
+    <h2>📋 Bear List</h2>
+    <mat-list>
+      <div class="bear-row" *ngFor="let b of bears">
+        <strong>{{ b.name }}</strong> — size: {{ b.size }}
+        <div class="colors">
+          <small *ngFor="let c of b.colors ?? []; let i = index">
+            {{ c.name }}<span *ngIf="i < (b.colors?.length ?? 0) - 1">, </span>
+          </small>
+        </div>
+        <div class="actions">
+        <button mat-mini-button color="primary" (click)="startEdit(b)">Edit</button>
+        <button mat-mini-button color="warn" (click)="deleteBear(b.id)">Delete</button>
+      </div>
+      <form
+      *ngIf="editingBearId === b.id"
+      [formGroup]="editForm"
+      (ngSubmit)="saveEdit()"
+      class="edit-form"
+    >
+      <mat-form-field appearance="outline" class="edit-input">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="edit-input">
+        <mat-label>Size</mat-label>
+        <input matInput type="number" formControlName="size" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="edit-input colors-select">
+        <mat-label>Colors</mat-label>
+        <mat-select formControlName="colors" multiple>
+          <mat-option *ngFor="let c of colors" [value]="c.id">{{ c.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="edit-actions">
+        <button mat-mini-button color="primary" type="submit" [disabled]="editForm.invalid">
+          Save
+        </button>
+        <button mat-mini-button type="button" (click)="cancelEdit()">Cancel</button>
+      </div>
+    </form>
+      </div>
+      
+    </mat-list>
+  </mat-card>
+</div>

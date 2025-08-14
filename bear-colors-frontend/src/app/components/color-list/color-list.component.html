@@ -1,0 +1,39 @@
+<div class="container">
+  <mat-card class="section-card">
+    <h2>🎨 Available Colors</h2>
+
+    <!-- Add Color Form -->
+    <form [formGroup]="addForm" (ngSubmit)="onAdd()" class="form-add">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>New Color Name</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit" [disabled]="addForm.invalid">Add Color</button>
+    </form>
+
+    <!-- Colors List -->
+    <mat-list>
+      <mat-list-item *ngFor="let c of colors">
+        <div *ngIf="editingColorId !== c.id" class="color-item">
+          {{ c.name }}
+          <span class="actions">
+            <button mat-icon-button color="primary" (click)="startEdit(c)" aria-label="Edit color">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deleteColor(c.id)" aria-label="Delete color">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </span>
+        </div>
+
+        <form *ngIf="editingColorId === c.id" [formGroup]="editForm" (ngSubmit)="saveEdit()" class="edit-form">
+          <mat-form-field appearance="outline" class="edit-input">
+            <input matInput formControlName="name" />
+          </mat-form-field>
+          <button mat-mini-button color="primary" type="submit" [disabled]="editForm.invalid">Save</button>
+          <button mat-mini-button type="button" (click)="cancelEdit()">Cancel</button>
+        </form>
+      </mat-list-item>
+    </mat-list>
+  </mat-card>
+</div>

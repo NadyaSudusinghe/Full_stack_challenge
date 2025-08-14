@@ -1,0 +1,74 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 16px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.section-card {
+  padding: 16px;
+}
+
+.full {
+  width: 100%;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+
+  .full {
+    grid-column: span 2;
+  }
+}
+
+.bear-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.colors {
+  font-size: 0.85em;
+  color: #666;
+}
+
+::ng-deep .mat-list-item-content {
+  padding-left: 0 !important;
+}
+
+.bear-row {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.actions {
+  margin-top: 8px;
+  button {
+    margin-right: 8px;
+  }
+}
+
+.edit-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+
+  .edit-input {
+    flex: 1 1 150px;
+    min-width: 120px;
+  }
+
+  .colors-select {
+    flex: 1 1 100%;
+  }
+
+  .edit-actions {
+    display: flex;
+    gap: 8px;
+  }
+}

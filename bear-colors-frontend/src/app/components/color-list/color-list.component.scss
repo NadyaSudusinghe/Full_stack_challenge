@@ -1,0 +1,56 @@
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+}
+
+.section-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 16px;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+}
+
+.section-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 16px;
+}
+
+.form-add {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+
+  .full-width {
+    flex: 1;
+  }
+}
+
+.color-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  .actions {
+    button {
+      margin-left: 8px;
+    }
+  }
+}
+
+.edit-form {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+
+  .edit-input {
+    flex: 1;
+  }
+}

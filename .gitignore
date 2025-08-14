@@ -1,0 +1,56 @@
+# Dependencies
+bear-colors-frontend/node_modules
+fullstack_challenge/node_modules
+
+# Build outputs
+bear-colors-frontend/dist
+fullstack_challenge/dist
+
+# Env files
+*.env
+
+# Logs
+*.log
+
+# OS
+bear-colors-frontend/.DS_Store
+fullstack_challenge/.DS_Store
+
+# Node
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+
+# Env files
+.env
+.env.*.local
+
+# Build outputs
+dist/
+build/
+tmp/
+out/
+
+# Angular
+bear-colors-frontend/.angular/
+bear-colors-frontend/.angular/cache/
+
+# TypeScript
+*.tsbuildinfo
+
+# Logs
+logs
+*.log
+
+# IDE / OS files
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Coverage
+coverage/
+
+# Docker
+**/docker-data
