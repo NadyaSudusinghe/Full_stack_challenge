@@ -1,0 +1,15 @@
+Prompt: I have a database of bears. Each bear has a size field(number) and colors field(array of strings). 
+I want to implement a feature where a user can type 'Show me big bears with brown or white fur' and the backend converts it to:
+{
+  size: number, // eg: anything above 150 is 'big'
+  colors: ['brown', 'white']
+}
+
+Please generate a feature that:
+1. Takes a natural language string as input
+2. Returns an object with size and colors keys
+3. Maps 'small', 'medium', 'big' to numerical ranges (eg: small < 100, medium 100-200, big > 200)
+4. Handles missing size or colors
+5. Returns the output in typeScript
+
+
