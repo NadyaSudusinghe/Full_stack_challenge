@@ -83,8 +83,9 @@ export class ColorListComponent implements OnInit {
   deleteColor(id?: number) {
     if (!id) return;
     if (confirm('Are you sure you want to delete this color?')) {
-      this.cs.delete(id).subscribe(() => {
-        this.loadColors();
+      this.cs.delete(id).subscribe({
+        next: () => this.loadColors(),
+        error: (err) => alert(err.message),
       });
     }
   }

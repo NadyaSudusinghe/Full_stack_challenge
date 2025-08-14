@@ -1,7 +1,7 @@
 // color.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 
 export interface ColorDto {
   id: number;
@@ -30,6 +30,12 @@ export class ColorService {
   }
 
   delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.prefix}/${id}`);
+    return this.http.delete<void>(`${this.prefix}/${id}`).pipe(
+      catchError((err) => {
+        return throwError(
+          () => new Error(err.error.message || 'Delete failed')
+        );
+      })
+    );
   }
 }
