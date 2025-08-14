@@ -7,6 +7,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
 } from "@nestjs/common";
 import { BearService } from "../service/bear.service";
 import { Bear } from "../persistence/bear.entity";
@@ -14,6 +15,12 @@ import { Bear } from "../persistence/bear.entity";
 @Controller("bear")
 export class BearController {
   constructor(private readonly bearService: BearService) {}
+
+  @Get("search")
+  searchBears(@Query("q") query?: string): Promise<Bear[]> {
+    console.log('query1: ', query);
+    return this.bearService.searchBears(query);
+  }
 
   @Get()
   findAll(): Promise<Bear[]> {

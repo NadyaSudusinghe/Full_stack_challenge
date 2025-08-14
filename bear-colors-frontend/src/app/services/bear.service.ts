@@ -19,6 +19,10 @@ export class BearService {
   private prefix = '/api/bear';
   constructor(private http: HttpClient) {}
 
+  searchBears(query: string): Observable<BearDto[]> {
+    return this.http.get<BearDto[]>(`${this.prefix}/search`, { params: { q: query } });
+  }
+
   getAll(): Observable<BearDto[]> {
     return this.http.get<BearDto[]>(this.prefix);
   }

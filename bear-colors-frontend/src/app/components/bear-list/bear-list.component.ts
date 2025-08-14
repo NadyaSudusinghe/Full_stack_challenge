@@ -26,13 +26,14 @@ import { CommonModule } from '@angular/common';
   templateUrl: './bear-list.component.html',
   styleUrls: ['./bear-list.component.scss'],
 })
-export class BearListComponent {
+export class BearListComponent implements OnInit {
   bears: BearDto[] = [];
   colors: ColorDto[] = [];
   filterColor = '';
 
   addForm!: ReturnType<FormBuilder['group']>;
   editForm!: ReturnType<FormBuilder['group']>;
+  searchForm!: ReturnType<FormBuilder['group']>;
 
   editingBearId: number | null = null;
 
@@ -55,6 +56,10 @@ export class BearListComponent {
       colors: [[] as number[]],
     });
 
+    this.searchForm = this.fb.group({
+      query: [''],
+    });
+
     this.colorService.getAll().subscribe((cs) => (this.colors = cs));
     this.loadBears();
   }
@@ -69,6 +74,17 @@ export class BearListComponent {
   onFilterByColor() {
     if (!this.filterColor) return this.loadBears();
     this.bearService.getByColor(this.filterColor).subscribe((list) => {
+      this.bears = list;
+      this.cancelEdit();
+    });
+  }
+
+  onSearch() {
+    const query = this.searchForm.value.query;
+    if (!query) {
+      return this.loadBears();
+    }
+    this.bearService.searchBears(query).subscribe((list) => {
       this.bears = list;
       this.cancelEdit();
     });

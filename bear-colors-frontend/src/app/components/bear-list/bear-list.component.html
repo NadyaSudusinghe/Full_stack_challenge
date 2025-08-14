@@ -1,4 +1,16 @@
 <div class="container">
+  <!-- Search Section -->
+  <mat-card class="section-card">
+    <h2>🔍 Search Bears</h2>
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Search Query</mat-label>
+        <input matInput formControlName="query" placeholder="e.g., Show me big bears with brown and white fur">
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Search</button>
+    </form>
+  </mat-card>
+
   <!-- Filter Section -->
   <mat-card class="section-card">
     <h2>🐻 Filter Bears by Color</h2>
